@@ -1,0 +1,39 @@
+---
+  - name: "synapse1"
+    signals:
+      - order: "Stell mir eine Frage"
+    neurons:
+      - say:
+          message: "Magst du Pommes?"
+      - neurotransmitter:
+          from_answer_link:
+            - synapse: "synapse2"
+              answers:
+                - "na klar"
+                - "natürlich"
+            - synapse: "synapse3"
+              answers:
+                - "überhaupt nicht"
+          default: "synapse4"
+
+  - name: "synapse2"
+    signals:
+      - order: "synapse2"
+    neurons:
+      - say:
+          message: "Du magst Pommes! Ich auch!"
+
+
+  - name: "synapse3"
+    signals:
+      - order: "synapse3"
+    neurons:
+      - say:
+          message: "Du magst keine Pommes."
+
+  - name: "synapse4"
+    signals:
+      - order: "synapse4"
+    neurons:
+      - say:
+          message: "Ich habe deine Antwort nicht verstanden."

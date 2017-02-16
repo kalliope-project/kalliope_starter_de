@@ -1,0 +1,22 @@
+---
+
+  - includes:
+        - brains/say.yml
+        - brains/systemdate.yml
+        - brains/neurotransmitter.yml
+        - brains/uri.yml
+
+  - name: "default-synapse"
+    signals:
+      - order: "default-synapse"
+    neurons:
+      - say:
+          message:
+            - "Ich habe nicht verstanden!"
+            - "Ich verstehe diesen Befehl nicht."
+            - "Bitte wiederhole deine Frage."
+            - "Könntest du bitte die Frage wiederholen?"
+            - "Ich verstehe das nicht."
+            - "Wie bitte?"
+
+

@@ -1,0 +1,12 @@
+{% if returncode == "DisambiguationError" %}
+    Die Anfrage trifft auf folgende Einträge zu
+    {% if may_refer is not none %}
+        {% for page in may_refer %}
+            {{ page }}
+        {% endfor %}
+    {% endif %}
+{% elif returncode == "PageError" %}
+    Ich habe dazu nichts gefunden.
+{% else %}
+    {{ summary }}
+{% endif %}
