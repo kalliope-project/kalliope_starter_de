@@ -5,4 +5,4 @@
     neurons:
       - say:
           message:
-            - "Hallo!"
+            - "Hallo {{name}} !"
