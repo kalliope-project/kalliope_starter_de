@@ -9,18 +9,18 @@
     }[weekday] | default("")
 -%}
 
-{% set month_word = {"1": "Januar", "2": "Februar", "3": "März", "4": "April", "5": "Mai", "6": "Juni", "7": "Juli", "8": "August", "9": "September", "10": "Oktober", "11": "November", "12": "Dezember"}[month] | default("") -%}
+{% set month_word = {"01": "Januar", "02": "Februar", "03": "März", "04": "April", "05": "Mai", "06": "Juni", "07": "Juli", "08": "August", "09": "September", "10": "Oktober", "11": "November", "12": "Dezember"}[month] | default("") -%}
 
 {% set day_month_formated = {
-    "1": "Ersten",
-    "2": "Zweiten",
-    "3": "Dritten",
-    "4": "Vierten",
-    "5": "Fünften",
-    "6": "Sechsten",
-    "7": "Siebten",
-    "8": "Achten",
-    "9": "Neunten",
+    "01": "Ersten",
+    "02": "Zweiten",
+    "03": "Dritten",
+    "04": "Vierten",
+    "05": "Fünften",
+    "06": "Sechsten",
+    "07": "Siebten",
+    "08": "Achten",
+    "09": "Neunten",
     "10": "Zehnten",
     "11": "Elften",
     "12": "Zwölften",
