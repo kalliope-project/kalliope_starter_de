@@ -25,10 +25,19 @@ triggers:
 # This is the STT that will be used by default
 default_speech_to_text: "google"
 
-# Spreech to Text engines configuration
+# Speech to text options
+#recognition_options:
+#  energy_threshold: 4000
+#  adjust_for_ambient_noise_second: 1
+
+# Speech to Text engines configuration
 # Available engine are:
 # - google (via SpeechRecognition)
-# -
+# - wit
+# - bing
+# - apiai
+# - houndify
+# - cmusphinx (must be installed first)
 speech_to_text:
   - google:
       language: "de-DE"
@@ -114,7 +123,7 @@ random_wake_up_sounds:
 # - always: every time Kalliope is ready to be awaken
 # - never: never play a sound or sentences when kalliope is ready
 # - once: at the first start of Kalliope
-play_on_ready_notification: "never"
+play_on_ready_notification: never
 
 # The on ready notification can be a sentence. Place here a sentence or a list of sentence. If you set a list, one sentence will be picked up randomly
 on_ready_answers:
@@ -136,6 +145,7 @@ rest_api:
   password_protected: True
   login: admin
   password: secret
+  allowed_cors_origin: "*"
 
 # ---------------------------
 # Default Synapse
@@ -150,6 +160,9 @@ resource_directory:
   neuron: "resources/neurons"
   stt: "resources/stt"
   tts: "resources/tts"
+  signal: "resources/signal"
+#  trigger: "resources/trigger"
+#
 
 # ---------------------------
 # Global files variables
