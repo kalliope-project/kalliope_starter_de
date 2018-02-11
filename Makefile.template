@@ -1,0 +1,7 @@
+# Template für einen Makefile, um die Konfiguration auf den PI zu übertragen
+PI ?= kalliope.local
+
+deploy_scripts:
+	git ls-files | rsync -avz --exclude=".*" --exclude="*.desktop" --files-from - . pi@$(PI):~/kalliope_starter_de
+
+deploy: deploy_scripts 
