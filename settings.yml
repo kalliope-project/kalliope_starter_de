@@ -108,7 +108,6 @@ hooks:
   on_start_speaking:
   on_stop_speaking:
 
-
 # ---------------------------
 # Rest API
 # ---------------------------
@@ -121,12 +120,6 @@ rest_api:
   allowed_cors_origin: "*"
 
 # ---------------------------
-# Default Synapse
-# ---------------------------
-# Specify an optional default synapse response in case your order is not found.
-default_synapse: "default-synapse"
-
-# ---------------------------
 # resource directory path
 # ---------------------------
 resource_directory:
@@ -134,8 +127,6 @@ resource_directory:
   stt: "resources/stt"
   tts: "resources/tts"
   signal: "resources/signal"
-#  trigger: "resources/trigger"
-#
 
 # ---------------------------
 # Global files variables
@@ -143,20 +134,9 @@ resource_directory:
 # ---------------------------
 var_files:
   - global_variables/variables.yml
-#  - variables2.yml
 
 # -------------
 # Start options
 # -------------
 #start_options:
 #  muted: False
-
-# ---------------------------
-# Raspberry Pi GPIO settings
-# ---------------------------
-#rpi:
-#  pin_mute_button: 24
-#  pin_led_started: 23
-#  pin_led_muted: 17
-#  pin_led_talking: 27
-#  pin_led_listening: 22
