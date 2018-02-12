@@ -6,7 +6,7 @@
     neurons:
       - systemdate:
           say_template:
-            - "Es ist {{ hours }} und {{ minutes }} Minuten"
+            - "Es ist {{ hours }} Uhr und {{ minutes }} Minuten"
 
   - name: "say-local-date-from-template"
     signals:

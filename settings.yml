@@ -13,10 +13,12 @@ default_trigger: "snowboy"
 # Trigger engine configuration
 # Available engine are:
 # - snowboy
+# Trigger words are either: Kalliope or Computer
+# un/comment line accordling
 triggers:
   - snowboy:
       pmdl_file: "trigger/kalliope-DE-samples.pmdl"
-
+#      pmdl_file: "trigger/Computer.pmdl"
 
 # ---------------------------
 # Speech to text
@@ -53,21 +55,17 @@ cache_path: "/tmp/kalliope_tts_cache"
 # Text to Spreech engines configuration
 # Available engine are:
 # - pico2wave
-# - acapela
-# - pico2wave
+# - watson
 # - googletts
 # - voicerss
 text_to_speech:
   - pico2wave:
       language: "de-DE"
       cache: True
-  - acapela:
-      language: "sonid15"
-      voice: "Manon"
-      cache: True
   - googletts:
       language: "de"
       cache: True
+      convert_to_wav: True
   - voicerss:
       language: "de-DE"
       cache: True
@@ -95,46 +93,20 @@ players:
      convert_to_wav: True
 
 # ---------------------------
-# Wake up answers
+# Hooks
 # ---------------------------
-# When Kalliope detect the hotword/trigger, he will select randomly a phrase in the following list
-# to notify the user that he's listening for orders
-random_wake_up_answers:
-  - "ja bitte?"
-  - "Ich höre?"
-  - "Ich höre auf Dich?"
-  - "Ja?"
-  - "Was kann ich für Dich tun?"
-  - "Wie kann ich Dir helfen?"
-
-# You can play a sound when Kalliope detect the hotword/trigger instead of saying something from
-# the `random_wake_up_answers`. To active the 'random_wake_up_sounds' you must comment out the 'random_wake_up_answers'
-# The file must be .wav or .mp3 format.
-random_wake_up_sounds:
-  - "trigger/dong.wav"
-  # - "/my/personal/full/path/my_file.mp3"
-
-# ---------------------------
-# On ready notification
-# ---------------------------
-# This section is used to notify the user when Kalliope is waiting for a trigger detection by playing a sound or speak a sentence out loud
-
-# This parameter define if you play the on ready answer:
-# - always: every time Kalliope is ready to be awaken
-# - never: never play a sound or sentences when kalliope is ready
-# - once: at the first start of Kalliope
-play_on_ready_notification: never
-
-# The on ready notification can be a sentence. Place here a sentence or a list of sentence. If you set a list, one sentence will be picked up randomly
-on_ready_answers:
-  - "waiting for order"
-
-# You can play a sound instead of a sentence.
-# Remove the `on_ready_answers` parameters by commenting it out and use this one instead.
-# Place here the path of the sound file. Files must be .wav or .mp3 format.
-on_ready_sounds:
-#  - "sounds/ding.wav"
-  - "sounds/dong.wav"
+hooks:
+  on_start: "on-start-synapse"
+  on_waiting_for_trigger:
+  on_triggered: "on-triggered-synapse"
+  on_start_listening:
+  on_stop_listening:
+  on_order_found:
+  on_order_not_found: "order-not-found-synapse"
+  on_mute:
+  on_unmute:
+  on_start_speaking:
+  on_stop_speaking:
 
 # ---------------------------
 # Rest API
@@ -148,12 +120,6 @@ rest_api:
   allowed_cors_origin: "*"
 
 # ---------------------------
-# Default Synapse
-# ---------------------------
-# Specify an optional default synapse response in case your order is not found.
-default_synapse: "default-synapse"
-
-# ---------------------------
 # resource directory path
 # ---------------------------
 resource_directory:
@@ -161,8 +127,6 @@ resource_directory:
   stt: "resources/stt"
   tts: "resources/tts"
   signal: "resources/signal"
-#  trigger: "resources/trigger"
-#
 
 # ---------------------------
 # Global files variables
@@ -170,14 +134,9 @@ resource_directory:
 # ---------------------------
 var_files:
   - global_variables/variables.yml
-#  - variables2.yml
 
-# ---------------------------
-# Raspberry Pi GPIO settings
-# ---------------------------
-#rpi:
-#  pin_mute_button: 24
-#  pin_led_started: 23
-#  pin_led_muted: 17
-#  pin_led_talking: 27
-#  pin_led_listening: 22
+# -------------
+# Start options
+# -------------
+#start_options:
+#  muted: False
