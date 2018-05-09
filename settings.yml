@@ -13,8 +13,6 @@ default_trigger: "snowboy"
 # Trigger engine configuration
 # Available engine are:
 # - snowboy
-# Trigger words are either: Kalliope or Computer
-# un/comment line accordling
 triggers:
   - snowboy:
       pmdl_file: "trigger/kalliope-DE-samples.pmdl"
@@ -27,12 +25,7 @@ triggers:
 # This is the STT that will be used by default
 default_speech_to_text: "google"
 
-# Speech to text options
-#recognition_options:
-#  energy_threshold: 4000
-#  adjust_for_ambient_noise_second: 1
-
-# Speech to Text engines configuration
+# Spreech to Text engines configuration
 # Available engine are:
 # - google (via SpeechRecognition)
 # - wit
@@ -56,6 +49,7 @@ cache_path: "/tmp/kalliope_tts_cache"
 # Available engine are:
 # - pico2wave
 # - watson
+# - pico2wave
 # - googletts
 # - voicerss
 text_to_speech:
@@ -65,9 +59,8 @@ text_to_speech:
   - googletts:
       language: "de"
       cache: True
-      convert_to_wav: True
   - voicerss:
-      language: "de-DE"
+      language: "de-de"
       cache: True
 
 # ---------------------------
@@ -103,10 +96,12 @@ hooks:
   on_stop_listening:
   on_order_found:
   on_order_not_found: "order-not-found-synapse"
-  on_mute:
-  on_unmute:
+  on_processed_synapses:
+  on_deaf:
+  on_undeaf:
   on_start_speaking:
   on_stop_speaking:
+  on_stt_error:
 
 # ---------------------------
 # Rest API
@@ -119,6 +114,7 @@ rest_api:
   password: secret
   allowed_cors_origin: "*"
 
+
 # ---------------------------
 # resource directory path
 # ---------------------------
@@ -127,6 +123,8 @@ resource_directory:
   stt: "resources/stt"
   tts: "resources/tts"
   signal: "resources/signal"
+#  trigger: "resources/trigger"
+#
 
 # ---------------------------
 # Global files variables
@@ -134,9 +132,14 @@ resource_directory:
 # ---------------------------
 var_files:
   - global_variables/variables.yml
+#  - variables2.yml
 
 # -------------
-# Start options
+# Options
 # -------------
-#start_options:
-#  muted: False
+options:
+#  energy_threshold: 4000                 # Speech to text option
+#  adjust_for_ambient_noise_second: 1     # Speech to text option
+#  stt_timeout: 5                          # Speech to text option
+  deaf: False
+  mute: False
