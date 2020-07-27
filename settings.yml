@@ -15,9 +15,9 @@ default_trigger: "snowboy"
 # - snowboy
 triggers:
   - snowboy:
-      pmdl_file: "trigger/kalliope-DE-samples.pmdl"
-#      pmdl_file: "trigger/Computer.pmdl"
-
+      keywords:
+        - file_path: "trigger/kalliope-DE-samples.pmdl"
+        #- file_path: "trigger/Computer.pmdl"
 # ---------------------------
 # Speech to text
 # ---------------------------
@@ -138,12 +138,9 @@ var_files:
 # Options
 # -------------
 options:
-#  energy_threshold: 4000                 # Speech to text option
-#  adjust_for_ambient_noise_second: 1     # Speech to text option
-#  stt_timeout: 5                          # Speech to text option
+#  recognizer_multiplier: 1.0                     # Speech to text option
+#  recognizer_energy_ratio: 1.5                   # Speech to text option
+#  recognizer_recording_timeout: 15.0             # Speech to text option
+#  recognizer_recording_timeout_with_silence: 3.0 # Speech to text option
   deaf: False
   mute: False
-
-
-# send hit to anonymously evaluate the global usage of Kalliope app by users
-send_anonymous_usage_stats: True
